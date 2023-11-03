@@ -24,7 +24,7 @@ with ZipFile(zip_file_name, 'r') as zip:
     zip.extract(csv_file_name)  # Ekstrak file CSV
 
 # Baca file CSV yang telah diekstrak menggunakan pandas
-df = pd.read_csv(csv_file_name)
+all_data_df = pd.read_csv(csv_file_name)
 
 # menyiapkan dataframe
 
