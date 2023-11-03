@@ -33,7 +33,7 @@ def create_rfm_df(df):
     rfm_df = rfm_df.dropna(subset=["max_order_timestamp"])
     rfm_df["max_order_timestamp"] = pd.to_datetime(rfm_df["max_order_timestamp"])
     
-    recent_date = orders_dataset_df["order_purchase_timestamp"].max().date()
+    recent_date = all_df["order_purchase_timestamp_y"].max().date()
     rfm_df["recency"] = rfm_df["max_order_timestamp"].apply(lambda x: (recent_date - x.date()).days)
     
     rfm_df.drop("max_order_timestamp", axis=1, inplace=True)
