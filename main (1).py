@@ -29,21 +29,21 @@ df = pd.read_csv(csv_file_name)
 # menyiapkan dataframe
 
 def create_sum_order_items_df(df):
-    sum_order_items_df = all_df.groupby("product_category_name").order_item_id.sum().sort_values(ascending=False).reset_index()
+    sum_order_items_df = all_data_df.groupby("product_category_name").order_item_id.sum().sort_values(ascending=False).reset_index()
     return create_sum_order_items_df
     
 def create_aggregated_data_df(df):
-    aggregated_data = all_df.groupby(by=["review_score"]).agg({
+    aggregated_data = all_data_df.groupby(by=["review_score"]).agg({
         "review_score": "sum"
     })
     return create_aggregated_data_df
 
 def create_sum_customer_city_df(df):
-    sum_customer_city = all_df.groupby("customer_city").customer_id.nunique().sort_values(ascending=False)
+    sum_customer_city = all_data_df.groupby("customer_city").customer_id.nunique().sort_values(ascending=False)
     return create_sum_customer_city_df
     
 def create_rfm_df(df):
-    rfm_df = all_df.groupby(by="customer_id", as_index=False).agg({
+    rfm_df = all_data_df.groupby(by="customer_id", as_index=False).agg({
         "order_purchase_timestamp_y": "max", 
         "order_id_x": "nunique", 
         "price": "sum" 
@@ -64,16 +64,16 @@ def create_rfm_df(df):
 # kunci pembuatan filter
 
 datetime_columns = ["order_purchase_timestamp_y", "order_delivered_customer_date_y"]
-all_df.sort_values(by="order_purchase_timestamp_y", inplace=True)
-all_df.reset_index(inplace=True)
+all_data_df.sort_values(by="order_purchase_timestamp_y", inplace=True)
+all_data_df.reset_index(inplace=True)
  
 for column in datetime_columns:
-    all_df[column] = pd.to_datetime(all_df[column])
+    all_data_df[column] = pd.to_datetime(all_df[column])
     
 # membuat komponen filter
 
-min_date = all_df["order_purchase_timestamp_y"].min()
-max_date = all_df["order_purchase_timestamp_y"].max()
+min_date = all_data_df["order_purchase_timestamp_y"].min()
+max_date = all_data_df["order_purchase_timestamp_y"].max()
  
 with st.sidebar:
     # Mengambil start_date & end_date dari date_input
@@ -83,7 +83,7 @@ with st.sidebar:
         value=[min_date, max_date]
     )
     
-main_df = all_df[(all_df["order_date"] >= str(start_date)) & 
+main_df = all_data_df[(all_df["order_date"] >= str(start_date)) & 
                 (all_df["order_date"] <= str(end_date))]
                 
 sum_order_items_df = create_sum_order_items_df(main_df)
