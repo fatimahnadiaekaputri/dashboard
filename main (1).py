@@ -7,6 +7,25 @@ sns.set(style='dark')
 import requests
 from zipfile import ZipFile
 
+# URL repositori GitHub dengan file ZIP
+github_zip_url = "https://github.com/fatimahnadiaekaputri/dashboard/blob/84f8d80d551c9bec8c023eccb8c1f473c5ab9903/all_data.zip"  # Ganti dengan URL sesuai repositori Anda
+
+# Nama file ZIP dan file CSV
+zip_file_name = 'all_data.zip'
+csv_file_name = 'all_data.csv'
+
+# Unduh file ZIP dari GitHub
+response = requests.get(github_zip_url)
+with open(zip_file_name, 'wb') as zip_file:
+    zip_file.write(response.content)
+
+# Ekstrak file CSV dari file ZIP
+with ZipFile(zip_file_name, 'r') as zip:
+    zip.extract(csv_file_name)  # Ekstrak file CSV
+
+# Baca file CSV yang telah diekstrak menggunakan pandas
+df = pd.read_csv(csv_file_name)
+
 # menyiapkan dataframe
 
 def create_sum_order_items_df(df):
@@ -41,25 +60,6 @@ def create_rfm_df(df):
     rfm_df.drop("max_order_timestamp", axis=1, inplace=True)
     
     return create_rfm_df
-    
-# URL repositori GitHub dengan file ZIP
-github_zip_url = https://github.com/fatimahnadiaekaputri/dashboard/blob/84f8d80d551c9bec8c023eccb8c1f473c5ab9903/all_data.zip  # Ganti dengan URL sesuai repositori Anda
-
-# Nama file ZIP dan file CSV
-zip_file_name = 'all_data.zip'
-csv_file_name = 'all_data.csv'
-
-# Unduh file ZIP dari GitHub
-response = requests.get(github_zip_url)
-with open(zip_file_name, 'wb') as zip_file:
-    zip_file.write(response.content)
-
-# Ekstrak file CSV dari file ZIP
-with ZipFile(zip_file_name, 'r') as zip:
-    zip.extract(csv_file_name)  # Ekstrak file CSV
-
-# Baca file CSV yang telah diekstrak menggunakan pandas
-df = pd.read_csv(csv_file_name)
 
 # kunci pembuatan filter
 
@@ -86,9 +86,6 @@ with st.sidebar:
 main_df = all_df[(all_df["order_date"] >= str(start_date)) & 
                 (all_df["order_date"] <= str(end_date))]
                 
-                
-    
-    
 sum_order_items_df = create_sum_order_items_df(main_df)
 aggregated_data_df = create_aggregated_data_df(main_df)
 sum_customer_city = create_sum_customer_city_df(main_df)
