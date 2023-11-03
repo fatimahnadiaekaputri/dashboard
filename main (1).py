@@ -4,6 +4,8 @@ import seaborn as sns
 import streamlit as st
 from babel.numbers import format_currency
 sns.set(style='dark')
+import requests
+from zipfile import ZipFile
 
 # menyiapkan dataframe
 
@@ -40,7 +42,24 @@ def create_rfm_df(df):
     
     return create_rfm_df
     
-all_df = pd.read_csv("all_data.csv")
+# URL repositori GitHub dengan file ZIP
+github_zip_url = "https://github.com/fatimahnadiaekaputri/dashboard/raw/main/all_data.zip"  # Ganti dengan URL sesuai repositori Anda
+
+# Nama file ZIP dan file CSV
+zip_file_name = 'all_data.zip'
+csv_file_name = 'all_data.csv'
+
+# Unduh file ZIP dari GitHub
+response = requests.get(github_zip_url)
+with open(zip_file_name, 'wb') as zip_file:
+    zip_file.write(response.content)
+
+# Ekstrak file CSV dari file ZIP
+with ZipFile(zip_file_name, 'r') as zip:
+    zip.extract(csv_file_name)  # Ekstrak file CSV
+
+# Baca file CSV yang telah diekstrak menggunakan pandas
+df = pd.read_csv(csv_file_name)
 
 # kunci pembuatan filter
 
