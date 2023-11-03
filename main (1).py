@@ -84,7 +84,7 @@ with st.sidebar:
     )
     
 main_df = all_data_df[(all_data_df["order_purchase_timestamp_y"] >= str(start_date)) & 
-                (all_df["order_purchase_timestamp_y"] <= str(end_date))]
+                (all_data_df["order_purchase_timestamp_y"] <= str(end_date))]
                 
 sum_order_items_df = create_sum_order_items_df(main_df)
 aggregated_data_df = create_aggregated_data_df(main_df)
