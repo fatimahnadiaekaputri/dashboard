@@ -43,7 +43,7 @@ def create_rfm_df(df):
     return create_rfm_df
     
 # URL repositori GitHub dengan file ZIP
-github_zip_url = "https://github.com/fatimahnadiaekaputri/dashboard/raw/main/all_data.zip"  # Ganti dengan URL sesuai repositori Anda
+github_zip_url = https://github.com/fatimahnadiaekaputri/dashboard/blob/84f8d80d551c9bec8c023eccb8c1f473c5ab9903/all_data.zip  # Ganti dengan URL sesuai repositori Anda
 
 # Nama file ZIP dan file CSV
 zip_file_name = 'all_data.zip'
