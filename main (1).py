@@ -68,7 +68,7 @@ all_data_df.sort_values(by="order_purchase_timestamp_y", inplace=True)
 all_data_df.reset_index(inplace=True)
  
 for column in datetime_columns:
-    all_data_df[column] = pd.to_datetime(all_df[column])
+    all_data_df[column] = pd.to_datetime(all_data_df[column])
     
 # membuat komponen filter
 
@@ -83,8 +83,8 @@ with st.sidebar:
         value=[min_date, max_date]
     )
     
-main_df = all_data_df[(all_df["order_date"] >= str(start_date)) & 
-                (all_df["order_date"] <= str(end_date))]
+main_df = all_data_df[(all_data_df["order_purchase_timestamp_y"] >= str(start_date)) & 
+                (all_df["order_purchase_timestamp_y"] <= str(end_date))]
                 
 sum_order_items_df = create_sum_order_items_df(main_df)
 aggregated_data_df = create_aggregated_data_df(main_df)
