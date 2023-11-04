@@ -111,13 +111,14 @@ labels = aggregated_data_df.index
 sizes = aggregated_data_df["review_score"]
 
 colors = ["#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#6A9C89"]
-
 explode = (0, 0, 0, 0, 0.1)
 
-ax.figure(figsize=(8, 8))
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3])
+fig.set_size_inches(8, 8)
 ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140, explode=explode)
 ax.set_title('Customers Score Percentage')
 
 ax.axis('equal')
 
-st.show()
+st.pyplot(fig)
