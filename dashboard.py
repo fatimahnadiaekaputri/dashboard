@@ -114,7 +114,7 @@ colors = ["#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#6A9C89"]
 explode = (0, 0, 0, 0, 0.1)
 
 fig, ax = plt.subplots()
-fig.set_size_inches(8, 8)
+fig.set_size_inches(5, 5)
 ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140, explode=explode)
 ax.set_title('Customers Score Percentage')
 
