@@ -107,8 +107,8 @@ st.pyplot(fig)
 
 # menampilkan bagian review score customer 
 st.subheader("Customer Score Percentage")
-labels = aggregated_data.index
-sizes = aggregated_data["review_score"]
+labels = aggregated_data_df.index
+sizes = aggregated_data_df["review_score"]
 
 colors = ["#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#6A9C89"]
 
