@@ -118,6 +118,6 @@ fig.set_size_inches(5, 5)
 ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140, explode=explode)
 ax.set_title('Customers Score Percentage')
 
-ax.axis('equal')
+ax.axis(0.5)
 
 st.pyplot(fig)
