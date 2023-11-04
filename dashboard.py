@@ -85,8 +85,8 @@ st.subheader('Top Product Category Name')
  
 col1, col2 = st.columns(2)
 
-name_product = sum_order_items_df.groupby('product_category_name')['order_item_id'].sum().idxmax()
-total_order = daily_orders_df.groupby('product_category_name')['order_item_id'].sum().max()
+name_product = sum_order_items_df.groupby('product_category_name').order_item_id.sum().idxmax()
+total_order = daily_orders_df.groupby('product_category_name').order_item_id.sum().max()
  
 with col1:
     st.metric("Product Category Name", value=name_product)
