@@ -103,5 +103,5 @@ ax.set_title("Top Product Category Name", loc="center", fontsize=30)
 ax.tick_params(axis ='y', labelsize=15)
  
 
-st.plypot(fig)
+st.plyplot(fig)
     
