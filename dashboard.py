@@ -9,17 +9,17 @@ sns.set(style='dark')
 
 def create_sum_order_items_df(df):
     sum_order_items_df = all_df.groupby("product_category_name").order_item_id.sum().sort_values(ascending=False).reset_index()
-    return create_sum_order_items_df
+    return sum_order_items_df
     
 def create_aggregated_data_df(df):
     aggregated_data = all_df.groupby(by=["review_score"]).agg({
         "review_score": "sum"
     })
-    return create_aggregated_data_df
+    return aggregated_data_df
 
 def create_sum_customer_city_df(df):
     sum_customer_city = all_df.groupby("customer_city").customer_id.nunique().sort_values(ascending=False)
-    return create_sum_customer_city_df
+    return sum_customer_city_df
     
 def create_rfm_df(df):
     rfm_df = all_df.groupby(by="customer_id", as_index=False).agg({
@@ -38,7 +38,7 @@ def create_rfm_df(df):
     
     rfm_df.drop("max_order_timestamp", axis=1, inplace=True)
     
-    return create_rfm_df
+    return rfm_df
     
 
 url = "https://drive.google.com/uc?export=download&id=1ch0rbg7aOm-F1gnEaoRoZlBRcCsWgTEY"
@@ -97,7 +97,7 @@ with col2:
 fig, ax = plt.subplots(figsize=(24, 6))
 colors = ["#6A9C89", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3"]
  
-sns.barplot(x="order_item_id", y="product_category_name", data=all_df.head(10), palette=colors)
+sns.barplot(x="order_item_id", y="product_category_name", data=sum_order_items_df.head(10), palette=colors)
 
 ax.set_title("Top Product Category Name", loc="center", fontsize=30)
 ax.tick_params(axis ='y', labelsize=15)
