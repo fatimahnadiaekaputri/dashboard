@@ -78,7 +78,20 @@ sum_customer_city_df = create_sum_customer_city_df(main_df)
 rfm_df = create_rfm_df(main_df)
 
 # melengkapi dashboard dengan visualisasi data
-st.header('Brazilian E-Commerce: ')
+# menampilkan judul
+css = """
+<style>
+    .custom-header {
+        color: #6A9C89; 
+        background-color: #F5E8B7; 
+        padding: 10px; 
+        border-radius: 5px; 
+    }
+</style>
+"""
+st.markdown(css, unsafe_allow_html=True)
+
+st.markdown('<h1 class="custom-header">Brazilian E-Commerce</h1>', unsafe_allow_html=True)
 
 # menampilkan bagian top product category name 
 st.subheader('Top Product Category Name')
