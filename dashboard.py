@@ -97,7 +97,7 @@ with col2:
 fig, ax = plt.subplots(figsize=(24, 6))
 colors = ["#6A9C89", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3"]
  
-sns.barplot(x="order_item_id", y="product_category_name", data=name_product_df.head(10), palette=colors)
+sns.barplot(x="order_item_id", y="product_category_name", data=sum_order_items_df.head(10), palette=colors)
 
 ax.set_title("Top Product Category Name", loc="center", fontsize=30)
 ax.tick_params(axis ='y', labelsize=15)
