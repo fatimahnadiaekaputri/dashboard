@@ -128,7 +128,8 @@ st.subheader('Top Cities Transaction')
 col1, col2 = st.columns(2)
 
 name_city = all_df.groupby('customer_city').customer_id.nunique().idxmax()
-order_total = sum_customer_city_df.index[:10].max()
+max_x_value = sum_customer_city_df.index[:10].max()
+order_total = sum_customer_city_df.loc[max_x_value, 'order_total']
  
 with col1:
     st.metric("Top City", value=name_city)
