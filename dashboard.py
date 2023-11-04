@@ -74,7 +74,7 @@ main_df = all_df[(all_df["order_purchase_timestamp_y"] >= str(start_date)) &
     
 sum_order_items_df = create_sum_order_items_df(main_df)
 aggregated_data_df = create_aggregated_data_df(main_df)
-sum_customer_city = create_sum_customer_city_df(main_df)
+sum_customer_city_df = create_sum_customer_city_df(main_df)
 rfm_df = create_rfm_df(main_df)
 
 # melengkapi dashboard dengan visualisasi data
