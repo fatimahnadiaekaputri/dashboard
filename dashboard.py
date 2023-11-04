@@ -121,3 +121,28 @@ ax.set_title('Customers Score Percentage')
 ax.set_aspect('equal')
 
 st.pyplot(fig)
+
+# menampilkan bagian top cities transaction
+st.subheader('Top Cities Transaction')
+ 
+col1, col2 = st.columns(2)
+
+name_city = all_df.groupby('customer_city').customer_id.nunique().idxmax()
+order_total = sum_customer_city_df.index.max()
+ 
+with col1:
+    st.metric("Top City", value=name_city)
+ 
+with col2:
+    st.metric("Total Order", value=order_total)
+ 
+fig, ax = plt.subplots(figsize=(24, 6))
+colors = ["#6A9C89", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3"]
+
+sns.barplot(x=sum_customer_city_df.index[:10], y=sum_customer_city_df.head(10), palette=colors)
+
+
+ax.set_title("Top Cities Transaction", loc="center", fontsize=15)
+ax.tick_params(axis ='y', labelsize=12)
+
+st.pyplot(fig)
