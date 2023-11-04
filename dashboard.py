@@ -104,4 +104,20 @@ ax.tick_params(axis ='y', labelsize=15)
  
 
 st.pyplot(fig)
-    
+
+# menampilkan bagian review score customer 
+st.subheader("Customer Score Percentage")
+labels = aggregated_data.index
+sizes = aggregated_data["review_score"]
+
+colors = ["#C1D8C3", "#C1D8C3", "#C1D8C3", "#C1D8C3", "#6A9C89"]
+
+explode = (0, 0, 0, 0, 0.1)
+
+ax.figure(figsize=(8, 8))
+ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140, explode=explode)
+ax.set_title('Customers Score Percentage')
+
+ax.axis('equal')
+
+st.show()
