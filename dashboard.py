@@ -12,13 +12,13 @@ def create_sum_order_items_df(df):
     return sum_order_items_df
     
 def create_aggregated_data_df(df):
-    aggregated_data = all_df.groupby(by=["review_score"]).agg({
+    aggregated_data_df = all_df.groupby(by=["review_score"]).agg({
         "review_score": "sum"
     })
     return aggregated_data_df
 
 def create_sum_customer_city_df(df):
-    sum_customer_city = all_df.groupby("customer_city").customer_id.nunique().sort_values(ascending=False)
+    sum_customer_city_df = all_df.groupby("customer_city").customer_id.nunique().sort_values(ascending=False)
     return sum_customer_city_df
     
 def create_rfm_df(df):
